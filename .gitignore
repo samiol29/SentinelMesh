@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+sentinel_memory.json
+
+# Docker & Labs
+clab-*/
+.clab/
+*.log
+
+# System
+.DS_Store
+
+# virtual environment
+sentinel-env/
+scripts/sentinel-env/
+venv/
+.env/
