@@ -3,19 +3,23 @@ mgmt:
   network: clab        # This matches the network we just manually created
 topology:
   nodes:
-    # Cluster A (Production)
-    a-node1: { kind: linux, image: alpine:latest }
-    a-node2: { kind: linux, image: alpine:latest }
-    # Cluster B (Storage/Backup)
-    b-node1: { kind: linux, image: alpine:latest }
-    b-node2: { kind: linux, image: alpine:latest }
-    # Sentinel Management Nodes
-    sentinel-guard: { kind: linux, image: alpine:latest }
-    sentinel-vault: { kind: linux, image: alpine:latest }
-
-  links:
-    - endpoints: ["a-node1:eth1", "a-node2:eth1"]
-    - endpoints: ["b-node1:eth1", "b-node2:eth1"]
-    - endpoints: ["a-node1:eth2", "sentinel-guard:eth1"]
-    - endpoints: ["b-node1:eth2", "sentinel-guard:eth2"]
-    - endpoints: ["sentinel-guard:eth3", "sentinel-vault:eth1"]
+    a-node1: 
+      kind: linux
+      image: sentinel-node:v1
+      ports:
+        - "9001:9999"  # Maps PC port 9001 to Node1 port 9999
+    a-node2:
+      kind: linux
+      image: sentinel-node:v1
+      ports:
+        - "9002:9999"
+    b-node1:
+      kind: linux
+      image: sentinel-node:v1
+      ports:
+        - "9003:9999"
+    b-node2:
+      kind: linux
+      image: sentinel-node:v1
+      ports:
+        - "9004:9999"

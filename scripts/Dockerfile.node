@@ -1,0 +1,19 @@
+# Use the same base as your current mesh (Alpine)
+FROM alpine:latest
+
+# Install Python3 and Netcat (busybox-extras provides a more robust nc)
+RUN apk add --no-cache \
+    python3 \
+    py3-pip \
+    busybox-extras \
+    iproute2 \
+    bash
+
+# Create a working directory
+WORKDIR /
+
+# (Optional) Pre-copy the sensor script so it's always there
+# COPY scripts/mesh_node.py /mesh_node.py
+
+# Keep the container running with a basic shell
+CMD ["/bin/sh"]
